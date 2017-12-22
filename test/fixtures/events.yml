@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  data: MyText
+  duration: 1.5
+  topic: MyString
+  caller_id: MyString
+  receiver_id: MyString
+
+two:
+  data: MyText
+  duration: 1.5
+  topic: MyString
+  caller_id: MyString
+  receiver_id: MyString

@@ -1,0 +1,20 @@
+
+%h1 Employees Report
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Type of
+      %th Manager
+      %th
+
+  %tbody
+    - users.each do |employee|
+      %tr
+        %td= employee.name
+        %td= employee.type_of
+        %td
+          - if employee.manager
+            = employee.manager.name
+         

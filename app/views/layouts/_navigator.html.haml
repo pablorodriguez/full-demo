@@ -1,0 +1,28 @@
+%nav.navbar.navbar-inverse.navbar-fixed-top
+  .container
+    .navbar-header.navbar-left
+      %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{:href => "/"} Upstack Employees
+    
+    - if current_user
+      #navbar.navbar-collapse.collapse.navbar-left
+        %ul.nav.navbar-nav
+          %li
+            = link_to "Employees", users_path
+          %li
+            = link_to "Calls", events_path
+          %li
+            = link_to "Reports", reports_index_path    
+    #navbar.navbar-collapse.collapse.navbar-right
+      %ul.nav.navbar-nav
+        %li
+          - if current_user            
+            = link_to destroy_user_session_path,:method=>'delete' do
+              = current_user.name
+              %span.glyphicon.glyphicon-off
+          - else
+            = link_to "Login", new_user_session_path

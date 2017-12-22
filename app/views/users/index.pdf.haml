@@ -1,0 +1,17 @@
+%h1 Listing employees
+
+%table.table
+  %thead
+    %tr
+      %th Name
+      %th Type of
+      %th Manager
+
+  %tbody
+    - @users.each do |employee|
+      %tr
+        %td= employee.name
+        %td= employee.type_of
+        %td
+          - if employee.manager
+            = link_to employee.manager.name, employee.manager

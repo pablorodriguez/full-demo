@@ -1,0 +1,47 @@
+
+- if current_user.is_manager?
+  = render "search"
+
+
+%h1 Listing employees
+
+%table.table
+  %thead
+    %tr
+      %th Name
+      %th Type of
+      %th Manager
+      %th
+
+  %tbody
+    - @users.each do |employee|
+      %tr
+        %td= employee.name
+        %td= employee.type_of
+        %td
+          - if employee.manager
+            = link_to employee.manager.name, employee.manager
+        %td
+          = link_to 'Show', employee
+          = link_to 'Edit', edit_user_path(employee)
+          = link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' }
+
+%hr
+
+= link_to 'New Employee', new_user_path
+
+= search_form_for @q,format: :csv do |f|
+  .hidden
+    = f.label :name
+    = f.search_field :name_cont
+    = f.label :type_of
+    = f.search_field :type_of_eq
+  = f.submit "Down Load CVS", class: "btn btn-default"
+
+= search_form_for @q,format: :pdf do |f|
+  .hidden
+    = f.label :name
+    = f.search_field :name_cont
+    = f.label :type_of
+    = f.search_field :type_of_eq
+  = f.submit "Down Load PDF", class: "btn btn-default"

@@ -1,0 +1,12 @@
+= simple_form_for @event, html: {:class =>"form-horizontal"} do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :data,required: true
+    = f.input :duration, required: true,hint: "Numeros de minutos"
+    = f.input :topic, required: true
+    = f.association :receiver ,collection: @receivers,:value_method => :id,include_blank: true, required: true
+    = f.input :audio, multiple: false 
+  %hr
+  .form-actions
+    = f.button :submit

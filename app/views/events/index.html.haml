@@ -1,0 +1,35 @@
+%h1 Listing events
+
+%table.table
+  %thead
+    %tr
+      %th Data
+      %th Duration
+      %th Topic
+      %th Caller
+      %th Receiver
+      %th Audio
+      %th
+
+  %tbody
+    - @events.each do |event|
+      %tr
+        %td= event.data
+        %td= event.duration
+        %td= event.topic
+        %td
+          = link_to event.caller.name, event.caller
+        %td
+          = link_to event.receiver.name, event.receiver
+        %td
+          %audio{:controls => ""}
+            %source{:src => "#{event.audio_url}", :type => "audio/mpeg"}
+              Your browser does not support the audio element.
+        %td
+          = link_to 'Show', event
+          = link_to 'Edit', edit_event_path(event)
+          = link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }
+
+%hr
+
+= link_to 'New Event', new_event_path

@@ -1,0 +1,5 @@
+%p#notice= notice
+
+= render :partial => "reports/index", :locals => {users: @users}
+%hr
+= link_to 'Email', reports_email_path

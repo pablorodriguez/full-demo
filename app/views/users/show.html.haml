@@ -1,0 +1,25 @@
+%p#notice= notice
+
+%dl.dl-horizontal
+  %dt Name:
+  %dd= @user.name
+  %dt Email:
+  %dd= @user.email
+  - if @user.manager
+    %dt Manager:
+    %dd
+      = link_to @user.manager.name, @user.manager
+
+
+  %dt Type of:
+  %dd= @user.type_of
+  - if @user.employees.any?
+    %dt Employees:
+    %dd
+      - @user.employees.each do |employee|
+        %span.label.label-info
+          = employee.name
+%hr
+= link_to 'Edit', edit_user_path(@user)
+\|
+= link_to 'Back', users_path

@@ -1,0 +1,12 @@
+%h1 Search Employee
+
+= search_form_for @q,class: "form-inline" do |f|
+  .form-group
+    = f.label :name
+    = f.search_field :name_cont,class: "form-control"
+  .form-group
+    = f.label :type_of
+    = f.search_field :type_of_eq, class: "form-control"
+  
+  = f.submit "Search", class: "btn btn-default"
+%hr

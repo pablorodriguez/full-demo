@@ -1,0 +1,27 @@
+%p#notice= notice
+
+%dl.dl-horizontal
+  %dt Data:
+  %dd= @event.data
+  %dt Duration:
+  %dd= @event.duration
+  %dt Topic
+  %dd= @event.topic
+  %dt Caller:
+  %dd
+    = link_to @event.caller.name, @event.caller
+  %dt Receiver:
+  %dd
+    = link_to @event.receiver.name, @event.receiver
+  - if @event.audio?
+    %dt Audio:
+    %dd
+      %audio{:controls => ""}
+        %source{:src => "#{@event.audio_url}", :type => "audio/mpeg"}
+          Your browser does not support the audio element.
+
+%hr
+
+= link_to 'Edit', edit_event_path(@event)
+\|
+= link_to 'Back', events_path
